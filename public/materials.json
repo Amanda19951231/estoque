@@ -10,5 +10,23 @@
     "nome": "Sasuke",
     "descricao": "etetr",
     "localizacao": "etret"
+  },
+  {
+    "tipo": "tipo",
+    "nome": "cdss",
+    "descricao": "cdsd",
+    "localizacao": "dcss"
+  },
+  {
+    "tipo": "produto",
+    "nome": "Pasta térmica",
+    "descricao": "",
+    "localizacao": "fs"
+  },
+  {
+    "tipo": "material",
+    "nome": "Memória Ram",
+    "descricao": "DDR3",
+    "localizacao": "gaveta a-1"
   }
 ]

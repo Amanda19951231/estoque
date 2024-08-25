@@ -182,23 +182,15 @@
                             <th>Localização</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Produto A</td>
-                            <td>Metal</td>
-                            <td>Sensível</td>
-                            <td>Armário A</td>
-                        </tr>
-                        <tr>
-                            <td>Produto B</td>
-                            <td>Metal</td>
-                            <td>Sensível</td>
-                            <td>Armário A</td>
-                        </tr>
+                    <tbody id="productsTableBody">
+                        <!-- Itens serão adicionados dinamicamente aqui -->
                     </tbody>
                 </table>
             </section>
         </div>
+
+
+
         <h3><i class="fa fa-tasks"></i> Em falta</h3>
         <div>
 
@@ -212,14 +204,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Produto A</td>
-                            <td>Produto</td>
-                        </tr>
-                        <tr>
-                            <td>Material A</td>
-                            <td>Material</td>
-                        </tr>
                     </tbody>
                 </table>
             </section>
@@ -281,8 +265,8 @@
                 </div>
                 <div class="form-group">
                     <label for="localizacao">Localização</label>
-                    <input type="text" id="localizacao" name="localizacao"
-                        placeholder="Localização do produto/material" required>
+                    <input type="text" id="localizacao" name="localizacao" placeholder="Localização do produto/material"
+                        required>
                 </div>
             </form>
             <div class="modal-footer">
@@ -347,80 +331,14 @@
             openModal('modalRetiradaMaterial');
         };
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const modal = document.getElementById('modalNovoMaterial');
-            const form = document.getElementById('materialForm');
-            const saveButton = document.getElementById('saveButton');
-            const tableBody = document.getElementById('materialsTableBody');
-
-            // Fecha o modal
-            window.closeModal = function (modalId) {
-                document.getElementById(modalId).style.display = 'none';
-            };
-
-            // Abre o modal
-            window.openModal = function (modalId) {
-                document.getElementById(modalId).style.display = 'block';
-            };
-
-            // Função para preencher a tabela
-            function populateTable() {
-                fetch('/materials')
-                    .then(response => response.json())
-                    .then(data => {
-                        tableBody.innerHTML = '';
-                        data.forEach(item => {
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
-                        <td>${item.nome}</td>
-                        <td>${item.tipo}</td>
-                        <td>${item.descricao}</td>
-                        <td>${item.localizacao}</td>
-                    `;
-                            tableBody.appendChild(row);
-                        });
-                    });
-            }
-
-            // Carrega os materiais cadastrados quando a página for carregada
-            populateTable();
-
-            // Salva o novo material
-            saveButton.addEventListener('click', () => {
-                const material = {
-                    tipo: form.tipo.value,
-                    nome: form.nome.value,
-                    descricao: form.descricao.value,
-                    localizacao: form.localizacao.value
-                };
-
-                fetch('/save', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(material)
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.message) {
-                            alert(data.message);
-                            closeModal('modalNovoMaterial');
-                            populateTable();
-                            form.reset();
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
-            });
-        });
-
+        
     </script>
     <!-- jQuery via Google's CDN -->
     <script src="./jquery.js"></script>
     <script src="./jquery_ui.js"></script>
     <!-- partial -->
-    <script src="./script.js"></script>
-
+    <script src="./filtro.js"></script>
+    <script src="./cadastro.js"></script>
 
 </body>
 
