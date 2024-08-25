@@ -25,45 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error('Error:', error));
     });
 
-    // Função para preencher a tabela de estoque
-    function populateEstoqueTable() {
-        fetch('/materials')
-            .then(response => response.json())
-            .then(data => {
-                estoqueTableBody.innerHTML = '';
-                const produtos = data.filter(item => item.tipo === 'produto');
-                const materiais = data.filter(item => item.tipo === 'material');
-
-                // Adiciona produtos
-                produtos.forEach(item => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${item.nome}</td>
-                        <td>${item.tipo}</td>
-                        <td>--</td> <!-- Quantidade em uso não aplicável para produtos -->
-                        <td>${item.quantidade || 0}</td> <!-- Total disponível -->
-                    `;
-                    estoqueTableBody.appendChild(row);
-                });
-
-                // Adiciona materiais
-                materiais.forEach(item => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${item.nome}</td>
-                        <td>${item.tipo}</td>
-                        <td>${item.quantidadeEmUso || 0}</td> <!-- Quantidade em uso -->
-                        <td>${item.quantidadeTotal || 0}</td> <!-- Quantidade total -->
-                    `;
-                    estoqueTableBody.appendChild(row);
-                });
-            })
-            .catch(error => console.error('Error:', error));
-    }
-
-    // Chama a função para preencher a tabela de estoque ao carregar a página
-    populateEstoqueTable();
-
     // Salva a nova compra
     saveNovaCompraButton.addEventListener('click', () => {
         const novaCompra = {
