@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>CodePen - Responsive Filter Table</title>
+    <title>Sistema de estoque</title>
     <link rel="stylesheet" href="./style.css">
     <style>
         /* Estilos gerais para o corpo */
@@ -129,18 +129,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Produto A</td>
-                            <td>Metal</td>
-                            <td>--</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>Material B</td>
-                            <td>Vidro</td>
-                            <td>3</td>
-                            <td>10</td>
-                        </tr>
                     </tbody>
                 </table>
             </section>
@@ -217,18 +205,19 @@
             <span class="close" onclick="closeModal('modalNovaCompra')">&times;</span>
             <h2>Nova compra</h2>
 
-            <form>
+            <form id="novaCompraForm">
                 <div class="form-group">
                     <label for="tipo">Produto/Material</label>
-                    <select id="tipo" name="tipo">
-                        <option value="tipo">Produto</option>
+                    <select id="tipoNovaCompra" name="tipo">
+                        <option value="produto">Produto</option>
                         <option value="material">Material</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="tipo">Nome</label>
-                    <select id="nome" name="nome">
-                        <option value=""></option>
+                    <label for="nome">Nome</label>
+                    <select id="nomeNovaCompra" name="nome">
+                        <option value="">Selecione o item</option>
+                        <!-- As opções serão adicionadas dinamicamente aqui -->
                     </select>
                 </div>
                 <div class="form-group">
@@ -238,10 +227,11 @@
             </form>
             <div class="modal-footer">
                 <button onclick="closeModal('modalNovaCompra')">Fechar</button>
-                <button>Salvar</button>
+                <button id="saveNovaCompraButton">Salvar</button>
             </div>
         </div>
     </div>
+
     <!-- Modal 2 -->
     <div id="modalNovoMaterial" class="modal">
         <div class="modal-content">
@@ -290,9 +280,9 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="tipo">Nome</label>
+                    <label for="nome">Nome</label>
                     <select id="nome" name="nome" required>
-                        <option value=""></option>
+                        <option value="">Selecione o item</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -302,7 +292,7 @@
             </form>
             <div class="modal-footer">
                 <button onclick="closeModal('modalRetiradaMaterial')">Fechar</button>
-                <button>Salvar</button>
+                <button id="saveRetiradaButton">Salvar</button>
             </div>
         </div>
     </div>
@@ -331,7 +321,7 @@
             openModal('modalRetiradaMaterial');
         };
 
-        
+
     </script>
     <!-- jQuery via Google's CDN -->
     <script src="./jquery.js"></script>
@@ -339,6 +329,8 @@
     <!-- partial -->
     <script src="./filtro.js"></script>
     <script src="./cadastro.js"></script>
+    <script src="./compra.js"></script>
+    <script src="./retira.js"></script>
 
 </body>
 

@@ -1,0 +1,17 @@
+[
+  {
+    "tipo": "produto",
+    "nome": "Parafuso",
+    "quantidade": "2"
+  },
+  {
+    "tipo": "produto",
+    "nome": "Memória Ram",
+    "quantidade": "5"
+  },
+  {
+    "tipo": "produto",
+    "nome": "Memória Ram",
+    "quantidade": "9"
+  }
+]

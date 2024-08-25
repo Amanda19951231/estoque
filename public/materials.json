@@ -1,32 +1,33 @@
 [
   {
-    "tipo": "tipo",
-    "nome": "Amanda Markusd",
-    "descricao": "asadsada",
-    "localizacao": "zxzx"
+    "tipo": "produto",
+    "nome": "Parafuso",
+    "descricao": "Fenda",
+    "localizacao": "Armário",
+    "quantidadeTotal": null
   },
   {
     "tipo": "material",
-    "nome": "Sasuke",
-    "descricao": "etetr",
-    "localizacao": "etret"
+    "nome": "Chave de fenda",
+    "descricao": "",
+    "localizacao": "Gaveta"
   },
   {
-    "tipo": "tipo",
-    "nome": "cdss",
-    "descricao": "cdsd",
-    "localizacao": "dcss"
+    "tipo": "material",
+    "nome": "Chave Philips",
+    "descricao": "",
+    "localizacao": "Gaveta"
   },
   {
     "tipo": "produto",
     "nome": "Pasta térmica",
     "descricao": "",
-    "localizacao": "fs"
+    "localizacao": "Gaveta"
   },
   {
-    "tipo": "material",
+    "tipo": "produto",
     "nome": "Memória Ram",
     "descricao": "DDR3",
-    "localizacao": "gaveta a-1"
+    "localizacao": "Gaveta"
   }
 ]
