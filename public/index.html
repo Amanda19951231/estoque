@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CodePen - Responsive Filter Table</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* Estilos gerais para o corpo */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Estilo para o container dos botões */
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Estilo para os botões */
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Estilos para o modal */
+        .modal {
+            display: none;
+            /* Inicialmente escondido */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Fundo semi-transparente */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        /* Estilo para o botão de fechar */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-footer {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .modal-footer button {
+            padding: 10px 20px;
+        }
+
+        /* Estilo para o formulário */
+        .form-group {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <button id="btnNovaCompra">Nova compra</button>
+        <button id="btnNovoMaterial">Novo material/produto</button>
+        <button id="btnRetiradaMaterial">Retirada de material/produto</button>
+    </div>
+
+    <div id="f-accordion">
+        <h3><i class="fa fa-tasks"></i> Estoque</h3>
+        <div>
+            <p>
+                Neste local, você pode consultar e verificar o estoque disponível.
+            </p>
+            <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtro" />
+            <section class="table-box">
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Quantidade em uso</th>
+                            <th>Quantidade total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Produto A</td>
+                            <td>Metal</td>
+                            <td>--</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Material B</td>
+                            <td>Vidro</td>
+                            <td>3</td>
+                            <td>10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </div>
+        <h3>Materiais cadastrados</h3>
+        <div>
+            </aside><!-- end alert -->
+
+            <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtro" />
+            <section class="table-box">
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Descrição</th>
+                            <th>Localização</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Material A</td>
+                            <td>Becker</td>
+                            <td>Sensível</td>
+                            <td>Armário B</td>
+                        </tr>
+                        <tr>
+                            <td>Material B</td>
+                            <td>Vidro</td>
+                            <td>Sensível</td>
+                            <td>Armário B</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </div>
+        <h3><i class="fa fa-tasks"></i> Produtos cadastrados</h3>
+        <div>
+            <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtro" />
+            <section class="table-box">
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Descrição</th>
+                            <th>Localização</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Produto A</td>
+                            <td>Metal</td>
+                            <td>Sensível</td>
+                            <td>Armário A</td>
+                        </tr>
+                        <tr>
+                            <td>Produto B</td>
+                            <td>Metal</td>
+                            <td>Sensível</td>
+                            <td>Armário A</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        <h3><i class="fa fa-tasks"></i> Em falta</h3>
+        <div>
+
+            <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtro" />
+            <section class="table-box">
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Produto A</td>
+                            <td>Produto</td>
+                        </tr>
+                        <tr>
+                            <td>Material A</td>
+                            <td>Material</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Modal 1 -->
+    <div id="modalNovaCompra" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalNovaCompra')">&times;</span>
+            <h2>Nova compra</h2>
+
+            <form>
+                <div class="form-group">
+                    <label for="tipo">Produto/Material</label>
+                    <select id="tipo" name="tipo">
+                        <option value="tipo">Produto</option>
+                        <option value="material">Material</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tipo">Nome</label>
+                    <select id="nome" name="nome">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="qtde">Quantidade comprada</label>
+                    <input type="text" id="qtde" name="qtde" placeholder="Quantidade comprada">
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button onclick="closeModal('modalNovaCompra')">Fechar</button>
+                <button>Salvar</button>
+            </div>
+        </div>
+    </div>
+    <!-- Modal 2 -->
+    <div id="modalNovoMaterial" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalNovoMaterial')">&times;</span>
+            <h2>Cadastrar Produto/Material</h2>
+            <form>
+                <div class="form-group">
+                    <label for="tipo">Produto/Material</label>
+                    <select id="tipo" name="tipo">
+                        <option value="tipo">Produto</option>
+                        <option value="material">Material</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tipo">Nome</label>
+                    <select id="nome" name="nome">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao" name="descricao" placeholder="Descrição do produto/material"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="localizacao">Localização</label>
+                    <input type="text" id="localizacao" name="localizacao"
+                        placeholder="Localização do produto/material">
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button onclick="closeModal('modalNovoMaterial')">Fechar</button>
+                <button>Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div id="modalRetiradaMaterial" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalRetiradaMaterial')">&times;</span>
+            <h2>Retirada de material/produto</h2>
+            <form>
+                <div class="form-group">
+                    <label for="tipo">Produto/Material</label>
+                    <select id="tipo" name="tipo">
+                        <option value="tipo">Produto</option>
+                        <option value="material">Material</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tipo">Nome</label>
+                    <select id="nome" name="nome">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="qtde">Quantidade retirada</label>
+                    <input type="text" id="qtde" name="qtde" placeholder="Quantidade retirada">
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button onclick="closeModal('modalRetiradaMaterial')">Fechar</button>
+                <button>Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para abrir o modal
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        // Função para fechar o modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Adicionando eventos aos botões para abrir os modais correspondentes
+        document.getElementById('btnNovaCompra').onclick = function () {
+            openModal('modalNovaCompra');
+        };
+
+        document.getElementById('btnNovoMaterial').onclick = function () {
+            openModal('modalNovoMaterial');
+        };
+
+        document.getElementById('btnRetiradaMaterial').onclick = function () {
+            openModal('modalRetiradaMaterial');
+        };
+    </script>
+    <!-- jQuery via Google's CDN -->
+    <script src="./jquery.js"></script>
+    <script src="./jquery_ui.js"></script>
+    <!-- partial -->
+    <script src="./script.js"></script>
+
+
+</body>
+
+</html>
