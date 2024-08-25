@@ -4,5 +4,17 @@
     "nome": "Parafuso",
     "quantidade": 1,
     "data": "2024-08-25T16:22:53.609Z"
+  },
+  {
+    "tipo": "produto",
+    "nome": "Memória Ram",
+    "quantidade": 2,
+    "data": "2024-08-25T19:55:17.810Z"
+  },
+  {
+    "tipo": "material",
+    "nome": "Chave de fenda",
+    "quantidade": 1,
+    "data": "2024-08-25T19:57:34.745Z"
   }
 ]

@@ -2,7 +2,7 @@
   {
     "tipo": "produto",
     "nome": "Parafuso",
-    "quantidade": "2"
+    "quantidade": "20"
   },
   {
     "tipo": "produto",
@@ -13,5 +13,15 @@
     "tipo": "produto",
     "nome": "Memória Ram",
     "quantidade": "9"
+  },
+  {
+    "tipo": "material",
+    "nome": "Chave Philips",
+    "quantidade": "5"
+  },
+  {
+    "tipo": "material",
+    "nome": "Chave de fenda",
+    "quantidade": "3"
   }
 ]

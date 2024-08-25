@@ -10,7 +10,8 @@
     "tipo": "material",
     "nome": "Chave de fenda",
     "descricao": "",
-    "localizacao": "Gaveta"
+    "localizacao": "Gaveta",
+    "quantidadeTotal": null
   },
   {
     "tipo": "material",
@@ -28,6 +29,7 @@
     "tipo": "produto",
     "nome": "Memória Ram",
     "descricao": "DDR3",
-    "localizacao": "Gaveta"
+    "localizacao": "Gaveta",
+    "quantidadeTotal": null
   }
 ]
