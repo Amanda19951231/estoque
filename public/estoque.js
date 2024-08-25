@@ -18,8 +18,8 @@ function fetchRetiradas() {
       });
 }
 
-// Função para preencher a tabela de estoque
-function populateEstoqueTable() {
+// Função para preencher a tabela de estoque e a tabela "em falta"
+function populateEstoqueTables() {
     Promise.all([fetchPurchases(), fetchRetiradas()])
       .then(([purchases, retiradas]) => {
         return fetch("/materials")
@@ -84,27 +84,37 @@ function populateEstoqueTable() {
               }
             });
 
-            // Preenche a tabela com os dados calculados
+            // Preenche a tabela de estoque
             const productsTableBody = document.querySelector(".order-table tbody");
             productsTableBody.innerHTML = "";
 
+            // Preenche a tabela de "em falta"
+            const faltaTableBody = document.querySelector("#faltaTableBody");
+            faltaTableBody.innerHTML = "";
+
             productMap.forEach((product) => {
+              // Adiciona linha à tabela de estoque
               const row = document.createElement("tr");
-              row.innerHTML = `
-                <td>${product.nome}</td>
-                <td>${product.tipo}</td>
-                <td>${product.tipo === 'material' ? product.quantidadeTotalCompras+product.quantidadeTotal : '--'}</td>
-                <td>${product.tipo === 'produto' ? product.quantidadeTotalCompras+product.quantidadeTotal : product.quantidadeTotalCompras}</td>
-                
-              `;
-              // PARA TESTE DA TABELA ESTOQUE
-              //   <td>${product.quantidadeTotalCompras}</td> <!-- Ajuste se precisar de uma coluna diferente -->
-              //   <td>${product.quantidadeTotal}</td> <!-- Quantidade após as retiradas -->
+              row.innerHTML = 
+                `<td>${product.nome}</td>
+                 <td>${product.tipo}</td>
+                 <td>${product.tipo === 'material' ? product.quantidadeTotalCompras + product.quantidadeTotal : '--'}</td>
+                 <td>${product.tipo === 'produto' ? product.quantidadeTotalCompras + product.quantidadeTotal : product.quantidadeTotalCompras}</td>`;
               productsTableBody.appendChild(row);
+
+              // Verifica se o produto está em falta e adiciona à tabela "em falta"
+              const quantidadeTotalAtual = product.tipo === 'produto' ? product.quantidadeTotalCompras + product.quantidadeTotal : product.quantidadeTotalCompras;
+              if (quantidadeTotalAtual < 10) {
+                const faltaRow = document.createElement("tr");
+                faltaRow.innerHTML = 
+                  `<td>${product.nome}</td>
+                   <td>${product.tipo}</td>`;
+                faltaTableBody.appendChild(faltaRow);
+              }
             });
           });
       })
       .catch((error) => console.error("Error:", error));
 }
 
-populateEstoqueTable();
+populateEstoqueTables();
